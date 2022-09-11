@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.js"></script>
+</head>
+<body>
+    <h1>Welcome to API Implementation </h1>
+    <table class="table table-bordered">
+        <tr>
+            <td><button onclick="GetAllBooks()">Get All Book</button></td>
+            <td>Enter Book Id : <input type="text" id="txtBookId" /></td>
+            <td><button onclick="GetBook()">Get Book</button></td>
+            <td>
+                <table class="table table-bordered">
+                    <tr>
+                        <td>Book Name : </td>
+                        <td><input type="text" id="txtBookName" /></td>
+                    </tr>
+                </table>
+            </td>
+            <td><button onclick="AddBook()">Add Book</button></td>
+            <td>Delete Book <input type="text" id="txtdelBookid" /></td>
+            <td><button onclick="DeleteBook()">Delete Book</button></td>
+        </tr>
+    </table>
+    <hr />
+    <h3>Output of action done through webapi</h3>
+    <div id="divResult">
+    </div>
+
+    <script>
+        function GetAllBooks() {
+            $("#divresult").html('Loading....');
+            $.ajax({
+                url: 'api/Books',
+                type: 'Get',
+                data: 'json',
+                success: function (data) {
+                   WriteResponse(data);
+                },
+                error: function () {
+                    $("#divResult").html('error...');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
